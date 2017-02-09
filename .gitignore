@@ -1,0 +1,8 @@
+/*.gz
+/*.png
+/sv_train/
+/boxtlog/
+t10k*
+*.mat
+train*
+*.pkl
