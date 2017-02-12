@@ -6,3 +6,5 @@ t10k*
 *.mat
 train*
 *.pkl
+*cnn1.*
+*SVHN*.*
