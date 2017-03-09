@@ -13264,7 +13264,8 @@ Epoch 3/3
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong> 
-At first I wondered if it was better to approach the problem through a network capable of recognizing a single digit and use it through a sliding window in order to identify sequence of digits. I have seen that in literature the problem has instead been solved through convolutional neural network capable of extracting each digit as a single feature of the same network (<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.682.9111&amp;rep=rep1&amp;type=pdf">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.682.9111&amp;rep=rep1&amp;type=pdf</a>).</p>
+At first I wondered if it was better to approach the problem through a network capable of recognizing a single digit and use it through a sliding window in order to identify sequence of digits. I have seen that in literature the problem has instead been solved through convolutional neural network capable of extracting each digit as a single feature of the same network (<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.682.9111&amp;rep=rep1&amp;type=pdf">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.682.9111&amp;rep=rep1&amp;type=pdf</a>).
+I then didn't even try the sliding window approach and started to reproduce the easier and more compact approach of recognizing the whole sequence with a convolutionl neural network.</p>
 
 </div>
 </div>
@@ -16152,7 +16153,9 @@ YII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
-I have used the information abot the digit boxes to infer the coordinates of the box wrapping the whole number. I have expanded the obtained coordinates to get a 30% wider box I used to crop the image. To resulting images are smaller and centered on the number. I then resize them to the desired 32X32 size. Another reduction has been made on the number of channels, from 3 RGB to 1 Gray, by averaging the RGB contributions. I have then substracted the mean value from each image.</p>
+I have used the information abot the digit boxes to infer the coordinates of the box wrapping the whole number. I have expanded the obtained coordinates to get a 30% wider box I used to crop the image. To resulting images are smaller and centered on the number. I then resize them to the desired 32X32 size. Another reduction has been made on the number of channels, from 3 RGB to 1 Gray, by averaging the RGB contributions. I have then substracted the mean value from each image. 
+In order to load the mat file in python I relied on a utility class I found on the Internet in several projects like this <a href="https://github.com/bvstillwell/udacity/blob/master/p5_deep/svhn_dataextract_tojson.py">https://github.com/bvstillwell/udacity/blob/master/p5_deep/svhn_dataextract_tojson.py</a>
+The model gets the following accuracies 0.99977043158861345, 0.99066421793694526, 0.91521273339455156, 0.75420875420875422, 0.70026017755114922 on the five digits. So I would assume 70% of accuracy.</p>
 
 </div>
 </div>
@@ -16173,8 +16176,9 @@ I have used the information abot the digit boxes to infer the coordinates of the
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
-For a long time I have been stuck trying with a more complex CNN (i.e. more layer / nodes) that did not improve during training. Thanks to the forum suppot I understood I had to simply the network and when I did it things got far better. Basically It seems that loss tends to increase logaritmically among the epoches meaning that you can look at the first 5 epoches and get wether your model is "good" or not. 
-I have also lerned that the model trains well when the input images are well centered on the house numbers..</p>
+For a long time I have been stuck trying with a more complex CNN (i.e. more layer / nodes) that did not improve during training. Along the ecpoches losses and accuracies remained contant and I thought the problem was the model was too simple so I tried adding layers, nodes, changing the learning rate, changing the batches size, and any possible combination of these changes. Nothing improved the training process. 
+Thanks to the forum suppot I understood I had to simplify the network and when I did it things got far better. I also noticed that (it seems) loss tends to increase logaritmically among the epoches meaning that you can look at the first 5 epoches to have a first quick understangind  of how your model will perform. 
+I have also lerned that the model trains well when the input images are well centered on the house numbers.</p>
 
 </div>
 </div>
@@ -22727,7 +22731,7 @@ Ozo6OiZEJ+GOjo6OCdFJuKOjo2NC/D/PVjM9cKtVygAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
-The CNN does not perform on original images. This is reasonable since it has been trained to interpret images centered and focused on the house number. I have therefore cropped my shots on the house number and things got better. The interesting fact I notice is that the performance might depends on how well the image is centered. If the shots was few pixels wider or the house number was slightly decentered the CNN failed. This could be the expression of an overfit on that specific geometric quality of the training set.</p>
+The CNN did not perform on original images. This is reasonable since it has been trained to interpret images centered and focused on the house number. I have therefore cropped my shots on the house number and things got better. The interesting fact I notice is that the performance might depends on how well the image is centered. If the shots was few pixels wider or the house number was slightly decentered the CNN failed. This could be the expression of an overfit on that specific geometric quality of the training set.</p>
 
 </div>
 </div>
